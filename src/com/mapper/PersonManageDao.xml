@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PersonManageDao">
+	<select id="list" parameterType="map" resultType="com.pojo.RoomWaiterInfo">
+			select * from roomwaiterinfo limit #{page},#{rows};
+	</select>
+	<select id="query" resultType="int">
+		   select count(*) from  roomwaiterinfo;
+	</select>
+	<insert id="add" parameterType="com.pojo.RoomWaiterInfo">
+		insert into roomwaiterinfo(roomWaiterId,waiterName,roomId,status,remark) values (#{roomWaiterId},#{waiterName},#{roomId},#{status},#{remark});
+	</insert>
+		<delete id="del" parameterType="int">
+		delete from roomwaiterinfo where id=#{data_id};
+	</delete>
+	
+	<select id="listReast" parameterType="map" resultType="com.pojo.RestWaiterInfo">
+			select * from restwaiterinfo limit #{page},#{rows};
+	</select>
+	<select id="getQuery" resultType="int">
+		   select count(*) from  restwaiterinfo;
+	</select>
+	<insert id="addReat" parameterType="com.pojo.RestWaiterInfo">
+		insert into restwaiterinfo(restWaiterId,waiterName,seatId,status,remark) values (#{restWaiterId},#{waiterName},#{seatId},#{status},#{remark});
+	</insert>
+	
+	<delete id="deleteReat" parameterType="int">
+		delete from restwaiterinfo where id=#{data_id};
+	</delete>
+	
+	<select id="listGara" parameterType="map" resultType="com.pojo.GarageWatierInfo">
+			select * from garagewatierinfo limit #{page},#{rows};
+	</select>
+	<select id="getQueryGara" resultType="int">
+		   select count(*) from  garagewatierinfo;
+	</select>
+	
+	<insert id="addGara" parameterType="com.pojo.GarageWatierInfo">
+		insert into garagewatierinfo(garaWaiterId,waiterName,garaId,status,remark) values (#{garaWaiterId},#{waiterName},#{garaId},#{status},#{remark});
+	</insert>
+		<delete id="deleteGara" parameterType="int">
+		delete from garagewatierinfo where id=#{data_id};
+	</delete>
+
+</mapper>

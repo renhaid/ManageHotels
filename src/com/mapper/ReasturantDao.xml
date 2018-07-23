@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ReasturantDao">
+	<select id="list" parameterType="map" resultType="com.pojo.SeatInfo">
+			select * from seatInfo limit #{page},#{rows};
+	</select>
+	
+	<select id="query" resultType="int">
+		select count(*) from  seatInfo;
+	</select>
+	
+	<delete id="del" parameterType="int">
+		delete from seatInfo where id=#{data_id};
+	</delete>
+	
+	<insert id="add" parameterType="com.pojo.SeatInfo">
+		insert into seatInfo(seatId,seatPeople,seatSatus,remark) values (#{seatId},#{seatPeople},#{seatSatus},#{remark});
+	</insert>
+	<select id="getList" parameterType="com.pojo.SeatInfo" resultType="com.pojo.SeatInfo">
+			select seatId from seatInfo where seatSatus=#{seatSatus};
+	</select>
+	<select id="getRecId" parameterType="map" resultType="com.pojo.RestWaiterInfo">
+			select restWaiterId from restwaiterinfo where status=#{status};
+	</select>
+	<select id="getCustId" parameterType="map" resultType="com.pojo.StayInfo">
+			select custId from stayinfo where remark=#{remark};
+	</select>
+	<insert id="ins" parameterType="com.pojo.RestCustInfo">
+		insert into restcustinfo(custName,seatId,restReceptId,custId,price,remark) values(#{custName},#{seatId},#{restReceptId},#{custId},#{price},#{remark});
+	</insert>
+	
+	<update id="upda" parameterType="map">
+		update seatInfo set seatSatus=#{seatSatus} where seatId=#{seatId};
+	</update>
+	
+	<select id="getReastCustInfo" parameterType="map" resultType="com.pojo.RestCustInfo">
+			select * from restcustinfo limit #{page},#{rows};
+	</select>
+	<select id="queryFind" resultType="int">
+			select  count(*) from  restcustinfo;
+	</select>
+	<update id="endRea" parameterType="map">
+		update restcustinfo set remark=#{remark} where id=#{id};
+	</update>
+	<select id="getRestCust" parameterType="int" resultType="com.pojo.RestCustInfo">
+		select seatId from restcustinfo where id=#{data_id};
+	</select>
+	<update id="updateSeat" parameterType="map">
+		update seatInfo set seatSatus=#{seatSatus} where seatId=#{seatId};
+	</update>
+
+</mapper>

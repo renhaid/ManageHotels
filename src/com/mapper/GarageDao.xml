@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.GarageDao">
+	<select id="list" parameterType="map" resultType="com.pojo.GarageInfo">
+			select * from garageinfo limit #{page},#{rows};
+	</select>
+	<select id="query" resultType="int">
+		select count(*) from  garageinfo;
+	</select>
+	<select id="getGaraWaiter" parameterType="map" resultType="com.pojo.GarageWatierInfo">
+		select garaWaiterId from garagewatierinfo where status=#{status};
+	</select>
+	<insert id="insertGara" parameterType="com.pojo.GaraCheckInfo">
+		insert into garacheckinfo(garaId,garaUseName,custId,garaDate,garaPersonId,remark) values(#{garaId},#{garaUseName},#{custId},#{garaDate},#{garaPersonId},#{remark});
+	</insert>
+	<select id="getFind" resultType="com.pojo.GarageInfo">
+		SELECT * FROM garageinfo WHERE 1=1;
+	</select>
+	<update id="upGarage" parameterType="map">
+		update garageinfo set count=#{count} where 1=1;
+	</update>
+	<select id="getCheckInfo" parameterType="map" resultType="com.pojo.GaraCheckInfo">
+			select * from garacheckinfo limit #{page},#{rows};
+	</select>
+	<select id="getQuery" resultType="int">
+		select count(*) from  garacheckinfo;
+	</select>
+	<update id="upGarageCheck" parameterType="map">
+		update garacheckinfo set garaEndDate=#{garaEndDate},remark=#{remark} where id=#{id};
+	</update>
+	<update id="upGaraIn" parameterType="map">
+		update garageinfo set count=#{count} where 1=1;
+	</update>
+
+</mapper>

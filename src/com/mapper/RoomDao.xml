@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RoomDao">
+	<select id="list" parameterType="map" resultType="com.pojo.RoomInfo">
+			select * from roominfo limit #{page},#{rows};
+	</select>
+	<select id="query" resultType="int">
+		select count(*) from  roominfo;
+	</select>
+	<delete id="del" parameterType="int">
+		delete from roominfo where id=#{data_id};
+	</delete>
+	<insert id="add" parameterType="com.pojo.RoomInfo">
+		insert into roominfo(roomId,roomType,roomPrice,status,floor,remark) values (#{roomId},#{roomType},#{roomPrice},#{status},#{floor},#{remark});
+	</insert>
+	<select id="getList" parameterType="map" resultType="com.pojo.RoomInfo">
+		select roomId from roominfo where status=#{status};
+	</select>
+	<insert id="ins" parameterType="com.pojo.StayInfo">
+			insert into stayInfo(stayId,roomId,custName,idCard,checkDate,opreationer,custId,remark) values(#{stayId},#{roomId},#{custName},#{idCard},#{checkDate},#{opreationer},#{custId},#{remark});
+	</insert>
+	<update id="update" parameterType="map">
+			update roominfo set status=#{status} where roomId=#{roomId};
+	</update>
+	
+	<select id="li" parameterType="map" resultType="com.pojo.StayInfo">
+			select * from stayinfo limit #{page},#{rows};
+	</select>
+	<select id="findStay" resultType="int">
+			select count(*) from stayinfo;
+	</select>
+	<update id="liv" parameterType="map">
+			update stayInfo set remark=#{remark},outDate=#{outDate} where id=#{id};
+	</update>
+	
+	<select id="findStayInfo" parameterType="int" resultType="com.pojo.StayInfo">
+			select roomId from stayinfo where id=#{roomId};
+	</select>
+	<update id="upRoomInfo" parameterType="map">
+			update roominfo set status=#{status} where roomId=#{roomId};
+	</update>
+</mapper>

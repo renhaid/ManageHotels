@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+							"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PayDao">
+		<select id="getStayInfo" parameterType="com.pojo.StayInfo" resultType="com.pojo.StayInfo">
+			select * from stayinfo where custId=#{custId};
+		</select>
+		<select id="getRoom" parameterType="map" resultType="com.pojo.RoomInfo">
+			select * from roominfo where roomId=#{roomId};
+		</select>
+		<select id="getRestCustInfo" parameterType="com.pojo.RestCustInfo" resultType="com.pojo.RestCustInfo">
+				select * from restcustinfo where custName=#{custName} and custId=#{custId};
+		</select>
+		<select id="getGagage" parameterType="com.pojo.GaraCheckInfo" resultType="com.pojo.GaraCheckInfo">
+				select * from garacheckinfo where custId=#{custId};
+		</select>
+</mapper>
